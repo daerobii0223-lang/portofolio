@@ -1,0 +1,1973 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daerobi | Editorial Portfolio</title>
+
+  <style>
+    :root {
+      --bg: #edf2f6;
+      --paper: #fbfbf7;
+      --ink: #17202a;
+      --muted: #5e6975;
+      --accent: #5f8fc6;
+      --deep: #2f5f86;
+      --soft-navy: #6f7fb3;
+      --sand: #e8d27a;
+      --line: rgba(23, 32, 42, 0.18);
+      --shadow: 0 24px 70px rgba(23, 32, 42, 0.14);
+      --radius: 28px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(95, 143, 198, 0.20), transparent 30%),
+        radial-gradient(circle at 80% 20%, rgba(111, 127, 179, 0.16), transparent 28%),
+        var(--bg);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.06;
+      background-image:
+        linear-gradient(rgba(0,0,0,0.4) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.4) 1px, transparent 1px);
+      background-size: 4px 4px;
+      mix-blend-mode: multiply;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1180px, 92%);
+      margin: auto;
+    }
+
+    .nav {
+      position: fixed;
+      top: 18px;
+      left: 0;
+      right: 0;
+      margin: auto;
+      z-index: 100;
+      width: min(900px, 92%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 34px;
+      padding: 14px 24px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(251, 251, 247, 0.78);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 14px 40px rgba(23, 32, 42, 0.12);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-weight: 900;
+      letter-spacing: -0.4px;
+      white-space: nowrap;
+    }
+
+    .brand-badge {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: white;
+      background: var(--ink);
+      animation: popBadge 2.6s ease-in-out infinite;
+      overflow: hidden;
+    }
+
+    .brand-badge img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      font-size: 13px;
+      text-transform: uppercase;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      transition: 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .magazine-cover {
+      min-height: 100vh;
+      padding: 118px 0 70px;
+      display: flex;
+      align-items: center;
+    }
+
+    .cover-frame {
+      width: 100%;
+      min-height: 760px;
+      border: 1px solid var(--line);
+      border-radius: 34px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.62), rgba(255,255,255,0.26)),
+        var(--paper);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .cover-frame::after {
+      content: "";
+      position: absolute;
+      width: 460px;
+      height: 460px;
+      border-radius: 50%;
+      right: -120px;
+      top: 90px;
+      background: linear-gradient(135deg, var(--accent), var(--soft-navy));
+      opacity: 0.16;
+      filter: blur(4px);
+    }
+
+    .cover-top {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 20px;
+      padding: 28px 34px;
+      border-bottom: 1px solid var(--line);
+      text-transform: uppercase;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      color: var(--muted);
+    }
+
+    .cover-top strong {
+      color: var(--ink);
+    }
+
+    .cover-top .center {
+      font-size: clamp(30px, 5vw, 68px);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      letter-spacing: -5px;
+      line-height: 0.85;
+      text-transform: none;
+    }
+
+    .cover-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 34px;
+      padding: 44px 34px 34px;
+    }
+
+    .issue-label {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      width: fit-content;
+      padding: 10px 14px;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+      background: var(--sand);
+      box-shadow: 5px 5px 0 var(--ink);
+    }
+
+    .cover-title {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(64px, 13vw, 168px);
+      letter-spacing: -9px;
+      line-height: 0.82;
+      margin-bottom: 24px;
+      color: var(--ink);
+    }
+
+    .cover-title span {
+      color: var(--ink) !important;
+      font-style: normal !important;
+    }
+
+    .cover-subtitle {
+      max-width: 660px;
+      font-size: clamp(18px, 2vw, 24px);
+      line-height: 1.55;
+      color: var(--muted);
+      margin-bottom: 26px;
+    }
+
+    .cover-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 14px 20px;
+      border-radius: 999px;
+      border: 1px solid var(--ink);
+      font-weight: 950;
+      transition: 0.25s ease;
+      box-shadow: 5px 5px 0 var(--ink);
+    }
+
+    .btn-primary {
+      background: var(--ink);
+      color: white;
+      box-shadow: 5px 5px 0 var(--accent);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--ink);
+    }
+
+    .btn:hover {
+      transform: translate(-2px, -4px);
+      box-shadow: 8px 8px 0 var(--accent);
+    }
+
+    .cover-visual {
+      min-height: 480px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .cover-visual::before {
+      content: "DEVELOPER";
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 58px;
+      font-weight: 950;
+      letter-spacing: 2px;
+      color: rgba(23, 32, 42, 0.08);
+      pointer-events: none;
+    }
+
+    .avatar-editorial {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--ink);
+      color: white;
+      border: 12px solid white;
+      font-size: 86px;
+      font-weight: 950;
+      box-shadow: 0 24px 60px rgba(23, 32, 42, 0.12);
+      animation: editorialFloat 4.5s ease-in-out infinite;
+      overflow: hidden;
+      z-index: 2;
+    }
+
+    .avatar-editorial img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .sticker {
+      position: absolute;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: var(--sand);
+      border: 1px solid var(--ink);
+      box-shadow: 5px 5px 0 var(--ink);
+      font-weight: 950;
+      transform: rotate(-8deg);
+      animation: stickerWiggle 3s ease-in-out infinite;
+    }
+
+    .sticker.one {
+      top: 60px;
+      left: 32px;
+    }
+
+    .sticker.two {
+      right: 26px;
+      bottom: 68px;
+      background: var(--accent);
+      color: white;
+      transform: rotate(7deg);
+      animation-delay: 0.7s;
+    }
+
+    .sticker.three {
+      right: 42px;
+      top: 120px;
+      background: white;
+      transform: rotate(10deg);
+      animation-delay: 1.1s;
+    }
+
+    .ticker {
+      border-top: 1px solid var(--ink);
+      border-bottom: 1px solid var(--ink);
+      background: var(--ink);
+      color: white;
+      overflow: hidden;
+      padding: 13px 0;
+    }
+
+    .ticker-track {
+      display: flex;
+      width: max-content;
+      animation: tickerMove 20s linear infinite;
+    }
+
+    .ticker-track span {
+      padding: 0 28px;
+      font-size: 13px;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    section {
+      padding: 92px 0;
+    }
+
+    .section-kicker {
+      width: fit-content;
+      padding: 9px 13px;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      background: var(--sand);
+      box-shadow: 4px 4px 0 var(--ink);
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 28px;
+      align-items: end;
+      margin-bottom: 40px;
+    }
+
+    .section-heading h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(44px, 7vw, 88px);
+      letter-spacing: -4px;
+      line-height: 0.9;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.75;
+      max-width: 620px;
+    }
+
+    .editorial-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .feature-card {
+      border: 1px solid var(--ink);
+      border-radius: var(--radius);
+      background: var(--paper);
+      box-shadow: 8px 8px 0 var(--ink);
+      padding: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(34px, 5vw, 64px);
+      letter-spacing: -3px;
+      line-height: 0.96;
+      margin-bottom: 18px;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      line-height: 1.85;
+      font-size: 17px;
+    }
+
+    .feature-card.small {
+      background: var(--ink);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 380px;
+    }
+
+    .feature-card.small p {
+      color: rgba(255,255,255,0.78);
+    }
+
+    .big-number {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 120px;
+      line-height: 0.8;
+      color: var(--accent);
+      letter-spacing: -8px;
+    }
+
+    .skill-board {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .mag-card {
+      min-height: 260px;
+      padding: 24px;
+      border-radius: 26px;
+      border: 1px solid var(--ink);
+      background: white;
+      box-shadow: 7px 7px 0 var(--ink);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mag-card:nth-child(2) {
+      background: #e8f1f8;
+    }
+
+    .mag-card:nth-child(3) {
+      background: #e9edf7;
+    }
+
+    .mag-card:nth-child(4) {
+      background: #f4efd7;
+    }
+
+    .mag-card:hover {
+      transform: translate(-4px, -8px) rotate(-1deg);
+      box-shadow: 11px 11px 0 var(--accent);
+    }
+
+    .mag-card .num {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 52px;
+      font-weight: 950;
+      color: var(--accent);
+      letter-spacing: -3px;
+      margin-bottom: 18px;
+    }
+
+    .mag-card h3 {
+      font-size: 22px;
+      margin-bottom: 14px;
+      letter-spacing: -0.6px;
+    }
+
+    .mag-card p {
+      color: var(--muted);
+      line-height: 1.72;
+      font-size: 15px;
+    }
+
+    .project-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 22px;
+    }
+
+    .project-card {
+      border: 1px solid var(--ink);
+      border-radius: 30px;
+      background: var(--paper);
+      box-shadow: 8px 8px 0 var(--ink);
+      overflow: hidden;
+      transition: 0.35s ease;
+    }
+
+    .project-card:nth-child(2) {
+      transform: translateY(36px);
+    }
+
+    .project-card:hover {
+      transform: translate(-5px, -10px) rotate(1deg);
+      box-shadow: 12px 12px 0 var(--accent);
+    }
+
+    .project-card:nth-child(2):hover {
+      transform: translate(-5px, 22px) rotate(-1deg);
+    }
+
+    .project-cover {
+      height: 230px;
+      display: grid;
+      place-items: center;
+      font-size: 72px;
+      border-bottom: 1px solid var(--ink);
+      background:
+        linear-gradient(135deg, rgba(95, 143, 198, 0.26), rgba(111, 127, 179, 0.18)),
+        white;
+      overflow: hidden;
+    }
+
+    .project-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .project-body {
+      padding: 24px;
+    }
+
+    .project-label {
+      display: inline-block;
+      padding: 7px 11px;
+      border-radius: 999px;
+      border: 1px solid var(--ink);
+      background: var(--sand);
+      font-size: 11px;
+      font-weight: 950;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .project-body h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 32px;
+      letter-spacing: -1.5px;
+      margin-bottom: 10px;
+    }
+
+    .project-body p {
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+
+    .read-link {
+      font-weight: 950;
+      color: var(--accent);
+    }
+
+    .timeline {
+      display: grid;
+      gap: 20px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .year-box {
+      border: 1px solid var(--ink);
+      border-radius: 24px;
+      background: var(--ink);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 42px;
+      letter-spacing: -2px;
+      box-shadow: 6px 6px 0 var(--accent);
+    }
+
+    .timeline-content {
+      border: 1px solid var(--ink);
+      border-radius: 24px;
+      background: white;
+      padding: 24px;
+      box-shadow: 6px 6px 0 var(--ink);
+    }
+
+    .timeline-content h3 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .timeline-content p {
+      color: var(--muted);
+      line-height: 1.72;
+    }
+
+    .contact-panel {
+      border: 1px solid var(--ink);
+      border-radius: 36px;
+      background:
+        linear-gradient(135deg, rgba(95, 143, 198, 0.20), rgba(111, 127, 179, 0.12)),
+        var(--paper);
+      box-shadow: 10px 10px 0 var(--ink);
+      padding: 46px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-panel h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(42px, 8vw, 92px);
+      letter-spacing: -5px;
+      line-height: 0.92;
+      margin-bottom: 18px;
+    }
+
+    .contact-panel p {
+      max-width: 720px;
+      margin: 0 auto 28px;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 18px;
+    }
+
+    .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    footer {
+      padding: 35px 0 48px;
+      text-align: center;
+      font-weight: 800;
+      color: var(--muted);
+    }
+
+    .reveal {
+      opacity: 0;
+      filter: blur(8px);
+      transition:
+        opacity 0.75s ease,
+        transform 0.75s cubic-bezier(.2,.8,.2,1),
+        filter 0.75s ease;
+      will-change: transform, opacity, filter;
+    }
+
+    .reveal.in-view {
+      opacity: 1;
+      transform: translate(0, 0) rotate(0) scale(1);
+      filter: blur(0);
+    }
+
+    .fade-up {
+      transform: translateY(46px);
+    }
+
+    .fade-down {
+      transform: translateY(-46px);
+    }
+
+    .slide-left {
+      transform: translateX(-70px) rotate(-2deg);
+    }
+
+    .slide-right {
+      transform: translateX(70px) rotate(2deg);
+    }
+
+    .zoom-in {
+      transform: scale(0.86);
+    }
+
+    .flip-in {
+      transform: perspective(800px) rotateX(16deg) translateY(40px);
+      transform-origin: top;
+    }
+
+    .mag-card.reveal,
+    .project-card.reveal,
+    .timeline-item.reveal {
+      transition-delay: var(--delay, 0ms);
+    }
+
+    .word-reveal span {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(28px) rotate(2deg);
+      filter: blur(6px);
+      transition:
+        opacity 0.55s ease,
+        transform 0.55s cubic-bezier(.2,.8,.2,1),
+        filter 0.55s ease;
+      transition-delay: calc(var(--i) * 42ms);
+    }
+
+    .word-reveal.in-view span {
+      opacity: 1;
+      transform: translateY(0) rotate(0);
+      filter: blur(0);
+    }
+
+    .word-reveal:not(.in-view) span {
+      opacity: 0;
+      transform: translateY(28px) rotate(2deg);
+      filter: blur(6px);
+    }
+
+    @keyframes popBadge {
+      0%, 100% {
+        transform: translateY(0) rotate(0);
+      }
+      50% {
+        transform: translateY(-5px) rotate(-6deg);
+      }
+    }
+
+    @keyframes editorialFloat {
+      0%, 100% {
+        transform: translate(-50%, -50%) rotate(-2deg);
+      }
+      50% {
+        transform: translate(-50%, -56%) rotate(3deg);
+      }
+    }
+
+    @keyframes stickerWiggle {
+      0%, 100% {
+        translate: 0 0;
+      }
+      50% {
+        translate: 0 -8px;
+      }
+    }
+
+    @keyframes tickerMove {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .cover-grid,
+      .section-heading,
+      .editorial-grid,
+      .project-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .project-card:nth-child(2) {
+        transform: translateY(0);
+      }
+
+      .project-card:nth-child(2):hover {
+        transform: translate(-5px, -10px) rotate(-1deg);
+      }
+
+      .skill-board {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .cover-top {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .cover-visual {
+        min-height: 440px;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .nav {
+        width: min(520px, 92%);
+        justify-content: center;
+      }
+
+      .nav-links a {
+        display: none;
+      }
+
+      .magazine-cover {
+        padding-top: 100px;
+      }
+
+      .cover-frame {
+        min-height: auto;
+      }
+
+      .cover-grid,
+      .cover-top {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .cover-title {
+        letter-spacing: -5px;
+      }
+
+      .avatar-editorial {
+        width: 210px;
+        height: 210px;
+        font-size: 70px;
+      }
+
+      .skill-board {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
+
+      .year-box {
+        min-height: 100px;
+      }
+
+      .contact-panel {
+        padding: 30px 22px;
+      }
+    }
+
+    /* --- CSS About Section Slide-Style --- */
+    .about-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 34px;
+      align-items: stretch;
+      margin-top: 30px;
+    }
+
+    .about-left-card {
+      background: #e2ecf5; /* light blue-grey card */
+      border: 1px solid var(--ink);
+      border-radius: var(--radius);
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-shadow: 8px 8px 0 var(--ink);
+    }
+
+    .about-left-card p {
+      font-size: clamp(16px, 1.8vw, 19px);
+      line-height: 1.75;
+      color: var(--ink);
+      text-align: justify;
+    }
+
+    .about-right-card {
+      background: #e1ebf5; /* light blue-grey panel */
+      border: 1px solid var(--ink);
+      border-radius: var(--radius);
+      padding: 40px;
+      box-shadow: 8px 8px 0 var(--ink);
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .about-right-card h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--ink);
+      letter-spacing: -0.5px;
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 12px;
+      margin-bottom: 6px;
+    }
+
+    .about-points-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .about-point-item {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+    }
+
+    .about-point-num {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--ink);
+      color: white;
+      font-weight: 950;
+      display: grid;
+      place-items: center;
+      font-size: 16px;
+      flex-shrink: 0;
+      box-shadow: 3px 3px 0 var(--accent);
+    }
+
+    .about-point-text h4 {
+      font-size: 18px;
+      font-weight: 950;
+      margin-bottom: 4px;
+      color: var(--ink);
+      letter-spacing: -0.3px;
+    }
+
+    .about-point-text p {
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+    
+    .about-footer-btn {
+      align-self: flex-end;
+      margin-top: auto;
+    }
+
+    @media (max-width: 980px) {
+      .about-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* --- CSS Modal Detail Proyek Slide-Style --- */
+    .project-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(23, 32, 42, 0.4);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      padding: 20px;
+    }
+
+    .project-modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .project-modal-card {
+      background: var(--paper);
+      border: 1px solid var(--ink);
+      border-radius: var(--radius);
+      width: min(1140px, 95%);
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 34px;
+      box-shadow: 12px 12px 0 var(--ink);
+      transform: translateY(30px);
+      transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+      position: relative;
+    }
+
+    .project-modal-overlay.active .project-modal-card {
+      transform: translateY(0);
+    }
+
+    .project-modal-close {
+      position: absolute;
+      top: 18px;
+      right: 24px;
+      background: none;
+      border: none;
+      font-size: 36px;
+      color: var(--muted);
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s;
+      font-weight: 300;
+      z-index: 10;
+    }
+
+    .project-modal-close:hover {
+      color: var(--ink);
+    }
+
+    .modal-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 34px;
+      align-items: stretch;
+      text-align: left;
+    }
+
+    @media (max-width: 980px) {
+      .modal-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Left Gallery */
+    .modal-gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .modal-img-container {
+      background: #e2ecf5;
+      border: 1px solid var(--ink);
+      border-radius: 24px;
+      padding: 16px;
+      box-shadow: 6px 6px 0 var(--ink);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .modal-main-img-wrap {
+      width: 100%;
+      height: 300px;
+      border-radius: 16px;
+      border: 1px solid var(--ink);
+      overflow: hidden;
+      position: relative;
+      background: white;
+    }
+
+    .modal-main-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .modal-thumb-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .modal-thumb-wrap {
+      height: 110px;
+      border-radius: 14px;
+      border: 1px solid var(--ink);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      background: white;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .modal-thumb-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .modal-thumb-wrap:hover {
+      transform: translateY(-2px);
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+
+    .modal-thumb-wrap.active {
+      border: 2px solid var(--accent);
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+
+    .modal-thumb-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(23, 32, 42, 0.85);
+      color: white;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+
+    /* Right Info Panel */
+    .modal-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .modal-header-meta {
+      font-size: 12px;
+      font-weight: 950;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 4px;
+    }
+
+    .modal-title {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(28px, 3.5vw, 40px);
+      letter-spacing: -1.5px;
+      line-height: 1.05;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .modal-subtitle {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 12px;
+      margin-bottom: 12px;
+    }
+
+    .modal-desc-section h4,
+    .modal-features-section h4 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 18px;
+      letter-spacing: -0.5px;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .modal-desc-section p {
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+
+    .modal-features-list {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .modal-features-list li {
+      position: relative;
+      padding-left: 20px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .modal-features-list li::before {
+      content: "✦";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .tech-tags span {
+      background: white;
+      border: 1px solid var(--ink);
+      padding: 5px 10px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 850;
+      box-shadow: 2px 2px 0 var(--ink);
+    }
+
+    .modal-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: flex-end;
+      margin-top: auto;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="nav reveal fade-down">
+    <a href="#home" class="brand">
+      <span class="brand-badge">
+        <img id="brand-img" src="" alt="D" style="display: none;">
+        <span id="brand-fallback">D</span>
+      </span>
+      <span>Daerobi</span>
+    </a>
+
+    <div class="nav-links">
+      <a href="#about">Profil</a>
+      <a href="#skills">Skill</a>
+      <a href="#projects">Project</a>
+      <a href="#journey">Journey</a>
+      <a href="#contact">Kontak</a>
+    </div>
+  </nav>
+
+  <main id="home" class="magazine-cover">
+    <div class="container">
+      <div class="cover-frame">
+        <div class="cover-top reveal fade-down">
+          <div><strong>Issue 01</strong> Portfolio Edition</div>
+          <div class="center">CREATIVE</div>
+          <div style="text-align:right;"><strong>2026</strong> Creative Profile</div>
+        </div>
+
+        <div class="cover-grid">
+          <div>
+            <div class="issue-label reveal slide-left">✨ DIGITAL MAGAZINE PORTFOLIO</div>
+
+            <h1 class="cover-title word-reveal">
+              Daerobi
+            </h1>
+
+            <p class="cover-subtitle reveal fade-up">
+              Saya seorang web developer yang berfokus pada pembuatan website modern, responsif, dan mudah digunakan. Portofolio ini menampilkan karya, skill, serta perjalanan saya dalam dunia digital.
+            </p>
+
+            <div class="cover-actions reveal fade-up">
+              <a href="#projects" class="btn btn-primary">Lihat Project</a>
+              <a href="#contact" class="btn btn-secondary">Hubungi Saya</a>
+            </div>
+          </div>
+
+          <div class="cover-visual reveal zoom-in">
+            <div class="avatar-editorial">
+              <img id="avatar-img" src="" alt="Daerobi" style="display: none;">
+              <span id="avatar-fallback">D</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ticker">
+          <div class="ticker-track">
+            <span>Creative Portfolio</span>
+            <span>Editorial Layout</span>
+            <span>Animated Slide Transition</span>
+            <span>Editable Project Detail</span>
+            <span>Daerobi</span>
+            <span>Creative Portfolio</span>
+            <span>Editorial Layout</span>
+            <span>Animated Slide Transition</span>
+            <span>Editable Project Detail</span>
+            <span>Daerobi</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <section id="about">
+    <div class="container">
+      <div class="about-heading" style="margin-bottom: 40px;">
+        <div class="section-kicker reveal slide-left">ABOUT</div>
+        <h2 class="word-reveal" style="font-family: Georgia, 'Times New Roman', serif; font-size: clamp(44px, 7vw, 88px); letter-spacing: -4px; line-height: 0.9; margin-top: 18px;">Ruang cerita tentang saya</h2>
+      </div>
+
+      <div class="about-layout">
+        <article class="about-left-card reveal slide-left">
+          <p>
+            Saya adalah seorang mahasiswa Informatika yang berfokus pada pengembangan aplikasi web modern (Full-Stack) dan pengelolaan infrastruktur server (DevOps). Melalui portofolio ini, saya mendemonstrasikan kemampuan saya dalam menjembatani baris kode software dengan keandalan sistem hardware fisik, mulai dari rancangan logika database hingga arsitektur hosting mandiri yang aman.
+          </p>
+        </article>
+
+        <aside class="about-right-card reveal slide-right">
+          <h3>Poin yang bisa diceritakan</h3>
+          <div class="about-points-list">
+            <div class="about-point-item">
+              <div class="about-point-num">01</div>
+              <div class="about-point-text">
+                <h4>Perkenalan diri</h4>
+                <p>Daerobi, mahasiswa Teknik Informatika yang menekuni rekayasa perangkat lunak dan manajemen infrastruktur cloud.</p>
+              </div>
+            </div>
+            <div class="about-point-item">
+              <div class="about-point-num">02</div>
+              <div class="about-point-text">
+                <h4>Minat utama</h4>
+                <p>Sangat tertarik pada arsitektur web modern (Next.js/Laravel), otomasi sistem dengan hardware IoT, serta virtualisasi server.</p>
+              </div>
+            </div>
+            <div class="about-point-item">
+              <div class="about-point-num">03</div>
+              <div class="about-point-text">
+                <h4>Cara kerja</h4>
+                <p>Mengutamakan struktur kode yang bersih, efisiensi alokasi resource hardware, dan penerapan otomatisasi deployment (GitOps).</p>
+              </div>
+            </div>
+            <div class="about-point-item">
+              <div class="about-point-num">04</div>
+              <div class="about-point-text">
+                <h4>Tujuan portofolio</h4>
+                <p>Menunjukkan kesiapan teknis end-to-end sebagai Full-Stack Developer atau DevOps Engineer yang siap menghadapi industri.</p>
+              </div>
+            </div>
+          </div>
+          
+          <a href="#skills" class="btn btn-primary about-footer-btn" style="box-shadow: 4px 4px 0 var(--accent); background: var(--ink); color: white;">Lanjut ke Skill →</a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="container">
+      <div class="skills-heading" style="margin-bottom: 40px;">
+        <div class="section-kicker reveal slide-left">Skill Board</div>
+        <h2 class="word-reveal" style="font-family: Georgia, 'Times New Roman', serif; font-size: clamp(44px, 7vw, 88px); letter-spacing: -4px; line-height: 0.9; margin-top: 18px;">Keahlian utama yang saya tawarkan</h2>
+      </div>
+
+      <div class="skill-board">
+        <div class="mag-card reveal flip-in" style="--delay: 0ms;">
+          <div class="num">01</div>
+          <h3>Desain Visual</h3>
+          <p>Membuat tampilan yang rapi, estetik, konsisten, dan punya karakter visual.</p>
+        </div>
+
+        <div class="mag-card reveal flip-in" style="--delay: 110ms;">
+          <div class="num">02</div>
+          <h3>Web Dasar</h3>
+          <p>Menguasai dasar HTML, CSS, JavaScript, animasi, dan struktur halaman responsif.</p>
+        </div>
+
+        <div class="mag-card reveal flip-in" style="--delay: 220ms;">
+          <div class="num">03</div>
+          <h3>Vibe Coding & AI</h3>
+          <p>Mengintegrasikan estetika kreatif dalam coding dengan bantuan kecerdasan buatan (AI) untuk menciptakan solusi yang inovatif, dinamis, dan responsif.</p>
+        </div>
+
+        <div class="mag-card reveal flip-in" style="--delay: 330ms;">
+          <div class="num">04</div>
+          <h3>Problem Solving</h3>
+          <p>Menganalisis kebutuhan, menyusun solusi, dan mengerjakan detail secara sistematis.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="container">
+      <div class="projects-heading" style="margin-bottom: 40px;">
+        <div class="section-kicker reveal slide-left">Featured Works</div>
+        <h2 class="word-reveal" style="font-family: Georgia, 'Times New Roman', serif; font-size: clamp(44px, 7vw, 88px); letter-spacing: -4px; line-height: 0.9; margin-top: 18px;">Karya terpilih</h2>
+      </div>
+
+      <div class="project-layout">
+        <article class="project-card reveal slide-left" style="--delay: 0ms;">
+          <div class="project-cover">
+            <img src="Enterprise Self-Hosted PaaS Infrastructure.png" alt="Private Cloud PaaS" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          <div class="project-body">
+            <span class="project-label">DevOps & Cloud</span>
+            <h3>Private Cloud PaaS</h3>
+            <p>Proyek ini adalah pengembangan infrastruktur Private Cloud mandiri</p>
+            <a href="#" class="read-link" data-project="proxmox-paas">Baca Detail →</a>
+          </div>
+        </article>
+
+        <article class="project-card reveal fade-up" style="--delay: 130ms;">
+          <div class="project-cover">
+            <img src="dashboard pribadi .png" alt="Dashboard Pribadi" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          <div class="project-body">
+            <span class="project-label">Digital Identity</span>
+            <h3>Dashboard Pribadi</h3>
+            <p>Sistem dashboard pribadi, intergrasi Ai gemini connet ke whatsapp gateway</p>
+            <a href="#" class="read-link" data-project="dashboard-pribadi">Baca Detail →</a>
+          </div>
+        </article>
+
+        <article class="project-card reveal slide-right" style="--delay: 260ms;">
+          <div class="project-cover">
+            <img src="arrohman-preview.png" alt="Arrohman Website" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          <div class="project-body">
+            <span class="project-label">Dashboard & School System</span>
+            <h3>Presensi Ar Rohman</h3>
+            <p>Sistem monitoring presensi digital real-time untuk sekolah SMP Islam Ar Rohman.</p>
+            <a href="#" class="read-link" data-project="presensi-arrohman">Baca Detail →</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="journey">
+    <div class="container">
+      <div class="journey-heading" style="margin-bottom: 40px;">
+        <div class="section-kicker reveal slide-left">Journey</div>
+        <h2 class="word-reveal" style="font-family: Georgia, 'Times New Roman', serif; font-size: clamp(44px, 7vw, 88px); letter-spacing: -4px; line-height: 0.9; margin-top: 18px;">Langkah karir dan pendidikan</h2>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item reveal slide-left" style="--delay: 0ms;">
+          <div class="year-box">2024</div>
+          <div class="timeline-content">
+            <h3>Pendidikan & Akademik</h3>
+            <p style="margin-bottom: 8px;"><strong>Universitas Pamulang</strong> — Teknik Informatika S1</p>
+            <p><strong>PKBM Budi Luhur</strong> — Sekolah Sederajat</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal slide-right" style="--delay: 130ms;">
+          <div class="year-box">2019</div>
+          <div class="timeline-content">
+            <h3>Prestasi Akademik</h3>
+            <p><strong>Lomba Pidato</strong> — Melatih kemampuan public speaking, rasa percaya diri, dan komunikasi verbal di depan umum.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal slide-left" style="--delay: 260ms;">
+          <div class="year-box">Karier</div>
+          <div class="timeline-content">
+            <h3>Karier & Pengalaman</h3>
+            <p style="margin-bottom: 12px;"><strong>Full-Stack Developer & DevOps</strong> — Merancang aplikasi web modern, mengoptimalkan database, dan mengelola deployment server mandiri.</p>
+            <p style="margin-bottom: 12px;"><strong>Presensi SMP Ar Rohman</strong> — Sukses mengintegrasikan hardware biometrik ke cloud dengan protokol ADMS.</p>
+            <p><strong>Independent Software & Systems Engineer</strong> — Automasi WhatsApp, keamanan mesh VPN, dan manajemen pusat data personal.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="contact-panel reveal zoom-in" style="padding: 60px 40px; background: var(--paper); border: 1px solid var(--ink); border-radius: var(--radius); box-shadow: 10px 10px 0 var(--ink); text-align: center;">
+        <h2 class="word-reveal" style="font-family: Georgia, 'Times New Roman', serif; font-size: clamp(36px, 6vw, 68px); letter-spacing: -2px; line-height: 1.1; margin-bottom: 40px; color: var(--ink);">Let’s build something solid.</h2>
+        
+        <style>
+          .contact-icon-link {
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            position: relative;
+          }
+          .contact-icon-link:hover {
+            transform: translateY(-8px) scale(1.12);
+          }
+          /* Brand-colored hover glow shadows using SVG filter drop-shadow */
+          .contact-icon-link[aria-label="Email"]:hover {
+            filter: drop-shadow(0 10px 18px rgba(234, 67, 53, 0.45));
+          }
+          .contact-icon-link[aria-label="WhatsApp"]:hover {
+            filter: drop-shadow(0 10px 18px rgba(37, 211, 102, 0.5));
+          }
+          .contact-icon-link[aria-label="Git"]:hover {
+            filter: drop-shadow(0 10px 18px rgba(240, 80, 50, 0.5));
+          }
+          .contact-icon-link[aria-label="Instagram"]:hover {
+            filter: drop-shadow(0 10px 18px rgba(214, 36, 159, 0.45));
+          }
+          .contact-icon-link[aria-label="TikTok"]:hover {
+            filter: drop-shadow(0 10px 18px rgba(37, 244, 238, 0.45));
+          }
+        </style>
+
+        <div class="contact-icons-row" style="display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap;">
+          <!-- Email Icon (Gmail Workspace Logo) -->
+          <a href="mailto:daerobii0223@email.com" class="contact-icon-link" aria-label="Email">
+            <svg width="54" height="54" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M45 16.2V38C45 40.2 43.2 42 41 42H34V16.2L45 8.2Z" fill="#4285F4"/>
+              <path d="M3 16.2V38C3 40.2 4.8 42 7 42H14V16.2L3 8.2Z" fill="#34A853"/>
+              <path d="M14 16.2V42H34V16.2L24 8.7L14 16.2Z" fill="#FBBC05"/>
+              <path d="M34 16.2L45 8.2C43.5 6.2 41 5 38.3 5H9.7C7 5 4.5 6.2 3 8.2L14 16.2H34Z" fill="#EA4335"/>
+            </svg>
+          </a>
+          
+          <!-- WhatsApp Icon (Official Solid Logo) -->
+          <a href="https://wa.me/6283836322784" target="_blank" class="contact-icon-link" aria-label="WhatsApp">
+            <svg width="54" height="54" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="10" fill="#25D366" />
+              <path d="M12.012 4.03a7.97 7.97 0 0 0-6.903 11.956l-.806 2.946 3.012-.79A7.972 7.972 0 1 0 12.012 4.03z" fill="white" />
+              <path d="M15.398 13.639c-.2-.11-1.18-.58-1.36-.64-.18-.07-.32-.1-.45.09-.13.2-.5.62-.61.75-.12.13-.23.15-.43.04-1.95-.97-3.08-1.78-3.79-3.01-.2-.35.2-.33.59-1.11.06-.14.03-.25-.01-.35-.05-.1-.46-1.11-.63-1.52-.17-.4-.36-.35-.5-.35h-.43c-.15 0-.39.06-.59.27-.2.21-.77.75-.77 1.83 0 1.08.79 2.13.9 2.28.11.15 1.55 2.37 3.76 3.32.53.23.94.36 1.26.46.53.17 1.01.14 1.39.09.42-.06 1.3-.53 1.48-1.05.18-.52.18-.96.13-1.05-.05-.09-.2-.14-.4-.24z" fill="#25D366"/>
+            </svg>
+          </a>
+          
+          <!-- Git Branch Icon (Official Orange Logo) -->
+          <a href="https://github.com/daerobii0223-lang?tab=overview&from=2026-05-01&to=2026-05-31" target="_blank" class="contact-icon-link" aria-label="Git">
+            <svg width="54" height="54" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="5.17" y="5.17" width="13.66" height="13.66" rx="2.5" transform="rotate(45 12 12)" fill="#F05032"/>
+              <path d="M12 8.5v5.5M12 11.5a3 3 0 0 0-3 3" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+              <circle cx="12" cy="8.5" r="1.8" fill="white" stroke="#F05032" stroke-width="0.6"/>
+              <circle cx="9" cy="14.5" r="1.8" fill="white" stroke="#F05032" stroke-width="0.6"/>
+              <circle cx="12" cy="14.5" r="1.8" fill="white" stroke="#F05032" stroke-width="0.6"/>
+            </svg>
+          </a>
+          
+          <!-- Instagram Icon (Sunset Gradient Logo) -->
+          <a href="https://instagram.com/oby.ty" target="_blank" class="contact-icon-link" aria-label="Instagram">
+            <svg width="54" height="54" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <radialGradient id="instaGradSolid" cx="30%" cy="107%" r="130%" fx="30%" fy="107%">
+                  <stop offset="0%" stop-color="#fdf497" />
+                  <stop offset="5%" stop-color="#fdf497" />
+                  <stop offset="45%" stop-color="#fd5949" />
+                  <stop offset="60%" stop-color="#d6249f" />
+                  <stop offset="90%" stop-color="#285AEB" />
+                </radialGradient>
+              </defs>
+              <rect x="2" y="2" width="20" height="20" rx="5.5" fill="url(#instaGradSolid)"/>
+              <rect x="6.2" y="6.2" width="11.6" height="11.6" rx="3" stroke="white" stroke-width="1.8"/>
+              <circle cx="12" cy="12" r="2.8" stroke="white" stroke-width="1.8"/>
+              <circle cx="15.6" cy="8.4" r="0.85" fill="white"/>
+            </svg>
+          </a>
+          
+          <!-- TikTok Icon (Chromatic Note Logo) -->
+          <a href="https://www.tiktok.com/@dareert?_r=1&_t=ZS-97FXOlW1WfA" target="_blank" class="contact-icon-link" aria-label="TikTok" style="display: flex; flex-direction: column; align-items: center; gap: 4px;">
+            <svg width="54" height="54" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 2px;">
+              <g transform="translate(2.5, 1.5) scale(0.9)">
+                <!-- Cyan note path offset left -->
+                <path d="M16.42 2a4.42 4.42 0 0 1 2.26 1v2.54a5.9 5.9 0 0 0-2.26-.45H16v6.36c0 2.27-1.84 4.1-4.1 4.1a4.1 4.1 0 0 1-4.1-4.1c0-2.27 1.84-4.1 4.1-4.1h.52v-2.5a6.59 6.59 0 0 0-.52-.05c-3.64 0-6.6 2.96-6.6 6.6a6.6 6.6 0 0 0 6.6 6.6c3.64 0 6.6-2.96 6.6-6.6V4.28a6.5 6.5 0 0 0 4.22 1.34V3.08a4.4 4.4 0 0 1-4.22-1.08z" fill="#00f2fe"/>
+                <!-- Magenta note path offset right -->
+                <path d="M16.58 2.15a4.42 4.42 0 0 1 2.26 1v2.54a5.9 5.9 0 0 0-2.26-.45H16.16v6.36c0 2.27-1.84 4.1-4.1 4.1a4.1 4.1 0 0 1-4.1-4.1c0-2.27 1.84-4.1 4.1-4.1h.52v-2.5a6.59 6.59 0 0 0-.52-.05c-3.64 0-6.6 2.96-6.6 6.6a6.6 6.6 0 0 0 6.6 6.6c3.64 0 6.6-2.96 6.6-6.6V4.43a6.5 6.5 0 0 0 4.22 1.34V3.23a4.4 4.4 0 0 1-4.22-1.08z" fill="#fe2c55"/>
+                <!-- Black center note path -->
+                <path d="M16.5 2.08a4.42 4.42 0 0 1 2.26 1v2.54a5.9 5.9 0 0 0-2.26-.45H16.08v6.36c0 2.27-1.84 4.1-4.1 4.1a4.1 4.1 0 0 1-4.1-4.1c0-2.27 1.84-4.1 4.1-4.1h.52v-2.5a6.59 6.59 0 0 0-.52-.05c-3.64 0-6.6 2.96-6.6 6.6a6.6 6.6 0 0 0 6.6 6.6c3.64 0 6.6-2.96 6.6-6.6V4.36a6.5 6.5 0 0 0 4.22 1.34V3.16a4.4 4.4 0 0 1-4.22-1.08z" fill="#17202A"/>
+              </g>
+            </svg>
+            <span style="font-family: Arial, sans-serif; font-size: 11px; font-weight: 900; color: #17202A; letter-spacing: 0.5px; text-transform: uppercase;">TikTok</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal Detail Project Slide-Style -->
+  <div id="project-modal" class="project-modal-overlay">
+    <div class="project-modal-card">
+      <button type="button" class="project-modal-close" id="btn-close-modal">×</button>
+      
+      <div class="modal-grid">
+        <!-- Gallery Left -->
+        <div class="modal-gallery">
+          <div class="modal-img-container">
+            <div class="modal-main-img-wrap">
+              <img id="modal-large-img" src="" alt="Main Preview">
+            </div>
+            <div class="modal-thumb-row">
+              <div class="modal-thumb-wrap active" id="thumb-wrap-0">
+                <img id="modal-thumb-0" src="" alt="Thumbnail 1">
+                <div class="modal-thumb-caption" id="modal-thumb-cap-0">Caption 1</div>
+              </div>
+              <div class="modal-thumb-wrap" id="thumb-wrap-1">
+                <img id="modal-thumb-1" src="" alt="Thumbnail 2">
+                <div class="modal-thumb-caption" id="modal-thumb-cap-1">Caption 2</div>
+              </div>
+            </div>
+            <div class="modal-thumb-row" style="margin-top: -4px;">
+              <div class="modal-thumb-wrap" id="thumb-wrap-2" style="grid-column: span 2; height: 90px;">
+                <img id="modal-thumb-2" src="" alt="Thumbnail 3">
+                <div class="modal-thumb-caption" id="modal-thumb-cap-2">Caption 3</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Info Right -->
+        <div class="modal-info">
+          <div>
+            <div class="modal-header-meta" id="modal-meta">Meta Tag</div>
+            <h2 class="modal-title" id="modal-title">Project Title</h2>
+            <div class="modal-subtitle" id="modal-subtitle">Sub Title</div>
+            
+            <div class="modal-desc-section">
+              <h4>Tentang Proyek</h4>
+              <p id="modal-desc">Project description goes here...</p>
+            </div>
+            
+            <div class="modal-features-section">
+              <h4>Fitur Utama</h4>
+              <ul class="modal-features-list" id="modal-features">
+                <li>Feature 1</li>
+                <li>Feature 2</li>
+              </ul>
+            </div>
+            
+            <div style="margin-top: 16px;">
+              <h4 style="font-family: Georgia, 'Times New Roman', serif; font-size: 16px; margin-bottom: 6px; color: var(--ink);">Kombinasi Teknologi</h4>
+              <div class="tech-tags" id="modal-techs">
+                <span>React</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="modal-actions">
+            <button type="button" class="btn btn-secondary" id="btn-close-modal-footer" style="box-shadow: 4px 4px 0 var(--ink);">← Kembali ke Project</button>
+            <a href="#" target="_blank" class="btn btn-primary" id="btn-modal-action" style="box-shadow: 4px 4px 0 var(--accent); background: var(--ink); color: white;">Buka Website →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    © <span id="year"></span> Daerobi. Editorial portfolio dibuat dengan HTML, CSS, dan JavaScript.
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const wordRevealElements = document.querySelectorAll(".word-reveal");
+
+    wordRevealElements.forEach((element) => {
+      const text = element.textContent.trim();
+      const words = text.split(" ");
+
+      element.innerHTML = words
+        .map((word, index) => {
+          return `<span style="--i:${index}">${word}&nbsp;</span>`;
+        })
+        .join("");
+    });
+
+    const revealElements = document.querySelectorAll(".reveal, .word-reveal");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+          } else {
+            entry.target.classList.remove("in-view");
+          }
+        });
+      },
+      {
+        threshold: 0.18,
+        rootMargin: "0px 0px -40px 0px"
+      }
+    );
+
+    revealElements.forEach((element) => observer.observe(element));
+
+    // Data Project untuk Modal Detail (Slide 5, 6, 7)
+    const projectData = {
+      "proxmox-paas": {
+        meta: "DevOps & Cloud Infrastructure",
+        title: "Private Cloud Self-Hosted PaaS",
+        subtitle: "Private Cloud · DevOps · Virtualization Orchestration",
+        desc: "Proyek ini adalah pengembangan infrastruktur Private Cloud mandiri yang dibangun di atas server fisik lokal menggunakan teknologi virtualisasi tingkat lanjut. Tujuan utamanya adalah menciptakan ekosistem Platform-as-a-Service (PaaS) pribadi yang mampu mengelola dan mengotomatisasi deployment berbagai aplikasi web secara terisolasi dan aman.",
+        features: [
+          "Hypervisor Hardware Virtualization (Proxmox VE)",
+          "Automated GitOps Deployment (Coolify Integration)",
+          "Containerization & Isolation (Docker Engine)",
+          "Secure Mesh Networking (Tailscale & WireGuard)"
+        ],
+        techs: ["Proxmox", "Docker", "Coolify", "Tailscale", "Ubuntu Server"],
+        btnText: "Buka Website →",
+        btnUrl: "https://wagate.daeroom.my.id",
+        images: [
+          { src: "slide5_rId11.png", caption: "Proxmox - Hypervisor Monitoring" },
+          { src: "slide5_rId12.png", caption: "Coolify - PaaS & Docker" },
+          { src: "slide5_rId13.png", caption: "Tailscale - Mesh VPN Secure" }
+        ]
+      },
+      "dashboard-pribadi": {
+        meta: "DIGITAL IDENTITY",
+        title: "Dashboard Pribadi",
+        subtitle: "Next.js · Supabase · Productivity Hub",
+        desc: "Aplikasi dashboard pribadi terintegrasi yang dirancang khusus untuk mengelola seluruh produktivitas harian, mulai dari jadwal perkuliahan, tenggat waktu tugas, pengelolaan proyek dengan Kanban board, pencatatan keuangan (pemasukan/pengeluaran), penyimpanan berkas, hingga pelacakan target (habit tracker) secara real-time.",
+        features: [
+          "Manajemen Tugas & Jadwal Kuliah Mingguan",
+          "Sinkronisasi File Manager & Catatan Cepat",
+          "Integrasi dengan AI Gemini & WhatsApp Gateway",
+          "Kanban Board & Tracker Milestone Proyek"
+        ],
+        techs: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Supabase"],
+        btnText: "Buka Atlas →",
+        btnUrl: "http://atlas.daeroom.my.id",
+        images: [
+          { src: "slide6_rId11.png", caption: "Halaman utama" },
+          { src: "slide6_rId12.png", caption: "Asisten Gemini AI" },
+          { src: "slide6_rId13.png", caption: "Manajemen Proyek" }
+        ]
+      },
+      "presensi-arrohman": {
+        meta: "DASHBOARD & SCHOOL SYSTEM",
+        title: "Sistem Presensi SMP Islam Ar Rohman",
+        subtitle: "Dashboard Monitoring Presensi Digital · Real Time",
+        desc: "Platform monitoring presensi digital real-time untuk SMP Islam Ar Rohman. Sistem menghubungkan data presensi ke dashboard admin agar status kehadiran siswa dan staf dapat dipantau lebih cepat.",
+        features: [
+          "Real-time analytics kehadiran harian siswa & staf",
+          "Heatmap kehadiran kelas secara grafis",
+          "Tren kehadiran mingguan dalam 7 hari terakhir",
+          "Status koneksi mesin presensi fisik & log ADMS"
+        ],
+        techs: ["Next.js", "React", "Tailwind CSS", "Chart.js", "Vercel"],
+        btnText: "Buka Website Utama →",
+        btnUrl: "https://arrohman.vercel.app/",
+        images: [
+          { src: "slide7_rId11.png", caption: "Dashboard Admin" },
+          { src: "slide7_rId12.png", caption: "Manajemen Data Presensi" },
+          { src: "slide7_rId13.png", caption: "Detail Presensi & Riwayat" }
+        ]
+      }
+    };
+
+    // Logika Pengendali Modal Detail Proyek
+    const projectLinks = document.querySelectorAll(".read-link");
+    const projectModal = document.getElementById("project-modal");
+    const btnCloseModal = document.getElementById("btn-close-modal");
+    const btnCloseModalFooter = document.getElementById("btn-close-modal-footer");
+
+    // Modal elements to populate
+    const modalMeta = document.getElementById("modal-meta");
+    const modalTitle = document.getElementById("modal-title");
+    const modalSubtitle = document.getElementById("modal-subtitle");
+    const modalDesc = document.getElementById("modal-desc");
+    const modalFeatures = document.getElementById("modal-features");
+    const modalTechs = document.getElementById("modal-techs");
+    const btnModalAction = document.getElementById("btn-modal-action");
+
+    // Gallery elements
+    const modalLargeImg = document.getElementById("modal-large-img");
+    const thumbWraps = [
+      document.getElementById("thumb-wrap-0"),
+      document.getElementById("thumb-wrap-1"),
+      document.getElementById("thumb-wrap-2")
+    ];
+    const thumbImgs = [
+      document.getElementById("modal-thumb-0"),
+      document.getElementById("modal-thumb-1"),
+      document.getElementById("modal-thumb-2")
+    ];
+    const thumbCaps = [
+      document.getElementById("modal-thumb-cap-0"),
+      document.getElementById("modal-thumb-cap-1"),
+      document.getElementById("modal-thumb-cap-2")
+    ];
+
+    let currentProjectImages = [];
+
+    function openProjectModal(projectId) {
+      const data = projectData[projectId];
+      if (!data) return;
+
+      // Populate content
+      modalMeta.textContent = data.meta;
+      modalTitle.textContent = data.title;
+      modalSubtitle.textContent = data.subtitle;
+      modalDesc.textContent = data.desc;
+
+      // Populate features
+      modalFeatures.innerHTML = "";
+      data.features.forEach(feat => {
+        const li = document.createElement("li");
+        li.textContent = feat;
+        modalFeatures.appendChild(li);
+      });
+
+      // Populate tech tags
+      modalTechs.innerHTML = "";
+      data.techs.forEach(tech => {
+        const span = document.createElement("span");
+        span.textContent = tech;
+        modalTechs.appendChild(span);
+      });
+
+      // Populate Action button
+      btnModalAction.textContent = data.btnText;
+      btnModalAction.href = data.btnUrl;
+
+      // Populate Gallery
+      currentProjectImages = data.images;
+      
+      // Set main image to first image
+      modalLargeImg.src = data.images[0].src;
+      modalLargeImg.alt = data.images[0].caption;
+
+      // Populate thumbnails
+      data.images.forEach((imgData, idx) => {
+        if (thumbImgs[idx]) {
+          thumbImgs[idx].src = imgData.src;
+          thumbImgs[idx].alt = imgData.caption;
+        }
+        if (thumbCaps[idx]) {
+          thumbCaps[idx].textContent = imgData.caption;
+        }
+        if (thumbWraps[idx]) {
+          thumbWraps[idx].classList.remove("active");
+        }
+      });
+      
+      // Activate first thumbnail
+      if (thumbWraps[0]) {
+        thumbWraps[0].classList.add("active");
+      }
+
+      // Show modal
+      projectModal.classList.add("active");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeProjectModal() {
+      projectModal.classList.remove("active");
+      document.body.style.overflow = "";
+    }
+
+    // Bind link click events
+    projectLinks.forEach(link => {
+      link.addEventListener("click", function(event) {
+        event.preventDefault();
+        const projectId = link.getAttribute("data-project");
+        if (projectId) {
+          openProjectModal(projectId);
+        }
+      });
+    });
+
+    // Close buttons events
+    if (btnCloseModal) {
+      btnCloseModal.addEventListener("click", closeProjectModal);
+    }
+    if (btnCloseModalFooter) {
+      btnCloseModalFooter.addEventListener("click", closeProjectModal);
+    }
+
+    // Close modal on background click
+    if (projectModal) {
+      projectModal.addEventListener("click", function(event) {
+        if (event.target === projectModal) {
+          closeProjectModal();
+        }
+      });
+    }
+
+    // Thumbnail swap click logic
+    thumbWraps.forEach((wrap, idx) => {
+      if (wrap) {
+        wrap.addEventListener("click", function() {
+          // Deactivate all thumbnails
+          thumbWraps.forEach(w => {
+            if (w) w.classList.remove("active");
+          });
+          // Activate clicked
+          wrap.classList.add("active");
+
+          // Swap large image source
+          if (currentProjectImages[idx]) {
+            modalLargeImg.src = currentProjectImages[idx].src;
+            modalLargeImg.alt = currentProjectImages[idx].caption;
+          }
+        });
+      }
+    });
+
+    // Deteksi dan muat foto profil secara otomatis dari folder lokal
+    const profileImages = [
+      "foto-profiel.jpeg",
+      "foto-profiel.jpg",
+      "foto-profiel.png",
+      "foto-profil.jpeg",
+      "foto-profil.jpg",
+      "foto-profil.png",
+      "profile.jpeg",
+      "profile.jpg",
+      "profile.png"
+    ];
+    
+    function tryLoadProfileImage(index = 0) {
+      if (index >= profileImages.length) {
+        return; // Semua opsi gagal, tetap tampilkan inisial "D"
+      }
+      
+      const imgPath = profileImages[index];
+      const tempImg = new Image();
+      
+      tempImg.onload = function() {
+        const avatarImg = document.getElementById("avatar-img");
+        const avatarFallback = document.getElementById("avatar-fallback");
+        const brandImg = document.getElementById("brand-img");
+        const brandFallback = document.getElementById("brand-fallback");
+        
+        if (avatarImg) {
+          avatarImg.src = imgPath;
+          avatarImg.style.display = "block";
+        }
+        if (avatarFallback) {
+          avatarFallback.style.display = "none";
+        }
+        if (brandImg) {
+          brandImg.src = imgPath;
+          brandImg.style.display = "block";
+        }
+        if (brandFallback) {
+          brandFallback.style.display = "none";
+        }
+      };
+      
+      tempImg.onerror = function() {
+        // Gagal memuat file ini, coba file alternatif berikutnya
+        tryLoadProfileImage(index + 1);
+      };
+      
+      tempImg.src = imgPath;
+    }
+    
+    // Mulai proses deteksi gambar
+    tryLoadProfileImage();
+  </script>
+</body>
+</html>
